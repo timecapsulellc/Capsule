@@ -1,0 +1,39 @@
+/* CSS HEX */
+ --electric-violet: #5c14eb;
+--cocoa-brown: #2a1e22;
+--blaze-orange: #fb6304;
+--paarl: #a8462c;
+--piper: #d65424;
+--fuzzy-wuzzy brown: #ca4b4e;
+--rouge: #ac3c7c;
+--hot-cinnamon: #e65c25;
+--bamboo: #e05c06;
+--red-stage: #d25c0c;
+
+
+/* SCSS HEX */
+$electric-violet: #5c14eb;
+$cocoa-brown: #2a1e22;
+$blaze-orange: #fb6304;
+$paarl: #a8462c;
+$piper: #d65424;
+$fuzzy-wuzzy brown: #ca4b4e;
+$rouge: #ac3c7c;
+$hot-cinnamon: #e65c25;
+$bamboo: #e05c06;
+$red-stage: #d25c0c;
+
+
+/* SCSS RGB */
+--electric-violet: rgba(92,20,235,1);
+--cocoa-brown: rgba(42,30,34,1);
+--blaze-orange: rgba(251,99,4,1);
+--paarl: rgba(168,70,44,1);
+--piper: rgba(214,84,36,1);
+--fuzzy-wuzzy brown: rgba(202,75,78,1);
+--rouge: rgba(172,60,124,1);
+--hot-cinnamon: rgba(230,92,37,1);
+--bamboo: rgba(224,92,6,1);
+--red-stage: rgba(210,92,12,1);
+
+
