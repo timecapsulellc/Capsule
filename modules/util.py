@@ -23,9 +23,24 @@ LANCZOS = (Image.Resampling.LANCZOS if hasattr(Image, 'Resampling') else Image.L
 # Regexp compiled once. Matches entries with the following pattern:
 # <lora:some_lora:1>
 # <lora:aNotherLora:-1.6>
-LORAS_PROMPT_PATTERN = re.compile(r"(<lora:([^:]+):([+-]?(?:\d+(?:\.\d*)?|\.\d+))>)", re.X)
+LORAS_PROMPT_PATTERN = re.compile(r"(<lora:([^:]+):([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+))>)", re.X)
 
 HASH_SHA256_LENGTH = 10
+
+
+def safe_str(x) -> str:
+    x = str(x)
+    if '\\\\u' in x:
+        # fix for some unicodes that create mojibake
+        # For example, the unicodes of "à" is "\\\\u00e0", but some prompts may contain "\\\\u00c3\\\\u00a0".
+        # This will cause the prompt to be displayed as "Ã " instead of "à".
+        # This is a temporary fix for this issue.
+        # We hope that the community can find a better solution.
+        try:
+            x = x.encode('latin-1').decode('utf-8')
+        except:
+            pass
+    return x
 
 
 def erode_or_dilate(x, k):
@@ -332,14 +347,14 @@ def extract_styles_from_prompt(prompt, negative_prompt):
     # add prompt expansion if not all styles could be resolved
     if prompt != '':
         if real_prompt != '':
-            extracted.append(modules.sdxl_styles.fooocus_expansion)
+            extracted.append(modules.sdxl_styles.capsule_expansion)
         else:
             # find real_prompt when only prompt expansion is selected
             first_word = prompt.split(', ')[0]
             first_word_positions = [i for i in range(len(prompt)) if prompt.startswith(first_word, i)]
             if len(first_word_positions) > 1:
                 real_prompt = prompt[:first_word_positions[-1]]
-                extracted.append(modules.sdxl_styles.fooocus_expansion)
+                extracted.append(modules.sdxl_styles.capsule_expansion)
                 if real_prompt.endswith(', '):
                     real_prompt = real_prompt[:-2]
 

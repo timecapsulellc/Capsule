@@ -1,7 +1,7 @@
-# Fooocus GPT2 Expansion
+# Capsule GPT2 Expansion
 # Algorithm created by Lvmin Zhang at 2023, Stanford
-# If used inside Fooocus, any use is permitted.
-# If used outside Fooocus, only non-commercial use is permitted (CC-By NC 4.0).
+# If used inside Capsule, any use is permitted.
+# If used outside Capsule, only non-commercial use is permitted (CC-By NC 4.0).
 # This applies to the word list, vocab, model, and algorithm.
 
 
@@ -12,33 +12,19 @@ import ldm_patched.modules.model_management as model_management
 
 from transformers.generation.logits_process import LogitsProcessorList
 from transformers import AutoTokenizer, AutoModelForCausalLM, set_seed
-from modules.config import path_fooocus_expansion
+from modules.config import path_capsule_expansion
 from ldm_patched.modules.model_patcher import ModelPatcher
+from modules.util import safe_str
+
+neg_inf = -float('inf')
+SEED_LIMIT_NUMPY = 2**32 - 1
 
 
-# limitation of np.random.seed(), called from transformers.set_seed()
-SEED_LIMIT_NUMPY = 2**32
-neg_inf = - 8192.0
+class CapsuleExpansion:
+    def __init__(self, model_name='lllyasviel/misc', device="cpu") -> None:
+        self.tokenizer = AutoTokenizer.from_pretrained(path_capsule_expansion)  # Load from local path
 
-
-def safe_str(x):
-    x = str(x)
-    for _ in range(16):
-        x = x.replace('  ', ' ')
-    return x.strip(",. \r\n")
-
-
-def remove_pattern(x, pattern):
-    for p in pattern:
-        x = x.replace(p, '')
-    return x
-
-
-class FooocusExpansion:
-    def __init__(self):
-        self.tokenizer = AutoTokenizer.from_pretrained(path_fooocus_expansion)
-
-        positive_words = open(os.path.join(path_fooocus_expansion, 'positive.txt'),
+        positive_words = open(os.path.join(path_capsule_expansion, 'positive.txt'),
                               encoding='utf-8').read().splitlines()
         positive_words = ['Ġ' + x.lower() for x in positive_words if x != '']
 
@@ -50,7 +36,7 @@ class FooocusExpansion:
                 self.logits_bias[0, v] = 0
                 debug_list.append(k[1:])
 
-        print(f'Fooocus V2 Expansion: Vocab with {len(debug_list)} words.')
+        print(f'Capsule V2 Expansion: Vocab with {len(debug_list)} words.')
 
         # debug_list = '\n'.join(sorted(debug_list))
         # print(debug_list)
@@ -59,7 +45,7 @@ class FooocusExpansion:
         # t198 = self.tokenizer('\n', return_tensors="np")
         # eos = self.tokenizer.eos_token_id
 
-        self.model = AutoModelForCausalLM.from_pretrained(path_fooocus_expansion)
+        self.model = AutoModelForCausalLM.from_pretrained(path_capsule_expansion)  # Load from local path
         self.model.eval()
 
         load_device = model_management.text_encoder_device()
@@ -76,7 +62,7 @@ class FooocusExpansion:
             self.model.half()
 
         self.patcher = ModelPatcher(self.model, load_device=load_device, offload_device=offload_device)
-        print(f'Fooocus Expansion engine loaded for {load_device}, use_fp16 = {use_fp16}.')
+        print(f'Capsule Expansion engine loaded for {load_device}, use_fp16 = {use_fp16}.')
 
     @torch.no_grad()
     @torch.inference_mode()
@@ -97,7 +83,7 @@ class FooocusExpansion:
             return ''
 
         if self.patcher.current_device != self.patcher.load_device:
-            print('Fooocus Expansion loaded by itself.')
+            print('Capsule Expansion loaded by itself.')
             model_management.load_model_gpu(self.patcher)
 
         seed = int(seed) % SEED_LIMIT_NUMPY

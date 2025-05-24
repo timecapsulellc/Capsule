@@ -1,4 +1,4 @@
-name: fooocus
+name: capsule
 channels:
   - defaults
 dependencies:

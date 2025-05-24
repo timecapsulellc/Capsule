@@ -71,7 +71,7 @@ def try_load_deprecated_user_path_config():
         replace_config('inpaint_models_path', 'path_inpaint')
         replace_config('controlnet_models_path', 'path_controlnet')
         replace_config('clip_vision_models_path', 'path_clip_vision')
-        replace_config('fooocus_expansion_path', 'path_fooocus_expansion')
+        replace_config('capsule_expansion_path', 'path_capsule_expansion')
         replace_config('temp_outputs_path', 'path_outputs')
 
         if deprecated_config_dict.get("default_model", None) == 'juggernautXL_version6Rundiffusion.safetensors':
@@ -197,7 +197,7 @@ path_upscale_models = get_dir_or_set_default('path_upscale_models', '../models/u
 path_inpaint = get_dir_or_set_default('path_inpaint', '../models/inpaint/')
 path_controlnet = get_dir_or_set_default('path_controlnet', '../models/controlnet/')
 path_clip_vision = get_dir_or_set_default('path_clip_vision', '../models/clip_vision/')
-path_fooocus_expansion = get_dir_or_set_default('path_fooocus_expansion', '../models/prompt_expansion/fooocus_expansion')
+path_capsule_expansion = get_dir_or_set_default('path_capsule_expansion', '../models/prompt_expansion/capsule_expansion')
 path_wildcards = get_dir_or_set_default('path_wildcards', '../wildcards/')
 path_safety_checker = get_dir_or_set_default('path_safety_checker', '../models/safety_checker/')
 path_sam = get_dir_or_set_default('path_sam', '../models/sam/')
@@ -252,7 +252,7 @@ def init_temp_path(path: str | None, default_path: str) -> str:
     return default_path
 
 
-default_temp_path = os.path.join(tempfile.gettempdir(), 'fooocus')
+default_temp_path = os.path.join(tempfile.gettempdir(), 'capsule')
 temp_path = init_temp_path(get_config_item_or_set_default(
     key='temp_path',
     default_value=default_temp_path,
@@ -376,9 +376,9 @@ default_vae = get_config_item_or_set_default(
 default_styles = get_config_item_or_set_default(
     key='default_styles',
     default_value=[
-        "Fooocus V2",
-        "Fooocus Enhance",
-        "Fooocus Sharp"
+        "Capsule V2",
+        "Capsule Enhance",
+        "Capsule Sharp"
     ],
     validator=lambda x: isinstance(x, list) and all(y in modules.sdxl_styles.legal_style_names for y in x),
     expected_type=list
@@ -453,7 +453,7 @@ default_image_number = get_config_item_or_set_default(
 )
 checkpoint_downloads = get_config_item_or_set_default(
     key='checkpoint_downloads',
-    default_value={},
+    default_value={"model.safetensors": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"},
     validator=lambda x: isinstance(x, dict) and all(isinstance(k, str) and isinstance(v, str) for k, v in x.items()),
     expected_type=dict
 )
@@ -657,7 +657,7 @@ default_save_metadata_to_images = get_config_item_or_set_default(
 )
 default_metadata_scheme = get_config_item_or_set_default(
     key='default_metadata_scheme',
-    default_value=MetadataScheme.FOOOCUS.value,
+    default_value=MetadataScheme.CAPSULE.value,
     validator=lambda x: x in [y[1] for y in modules.flags.metadata_scheme if y[1] == x],
     expected_type=str
 )

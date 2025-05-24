@@ -1,6 +1,6 @@
-from modules.expansion import FooocusExpansion
+from modules.expansion import CapsuleExpansion
 
-expansion = FooocusExpansion()
+expansion = CapsuleExpansion()
 
 text = 'a handsome man'
 
