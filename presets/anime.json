@@ -37,9 +37,9 @@
     "default_prompt": "",
     "default_prompt_negative": "",
     "default_styles": [
-        "Fooocus V2",
-        "Fooocus Semi Realistic",
-        "Fooocus Masterpiece"
+        "Capsule V2",
+        "Capsule Semi Realistic",
+        "Capsule Masterpiece"
     ],
     "default_aspect_ratio": "896*1152",
     "default_overwrite_step": -1,

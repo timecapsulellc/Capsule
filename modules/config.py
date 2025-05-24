@@ -375,7 +375,9 @@ default_vae = get_config_item_or_set_default(
 )
 default_styles = get_config_item_or_set_default(
     key='default_styles',
-    default=["Capsule V2", "Capsule Enhance", "Capsule Sharp"]
+    default_value=["Capsule V2", "Capsule Enhance", "Capsule Sharp"],
+    validator=lambda x: isinstance(x, list) and all(isinstance(s, str) for s in x),
+    expected_type=list
 )
 default_prompt_negative = get_config_item_or_set_default(
     key='default_prompt_negative',
@@ -793,7 +795,7 @@ wildcard_filenames = []
 
 def get_model_filenames(folder_paths, extensions=None, name_filter=None):
     if extensions is None:
-        extensions = ['.pth', '.ckpt', '.bin', '.safetensors', '.fooocus.patch']
+        extensions = ['.pth', '.ckpt', '.bin', '.safetensors', '.capsule.patch']
     files = []
 
     if not isinstance(folder_paths, list):
@@ -818,36 +820,34 @@ def downloading_inpaint_models(v):
     assert v in modules.flags.inpaint_engine_versions
 
     load_file_from_url(
-        url='https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/fooocus_inpaint_head.pth',
+        url='https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/capsule_inpaint_head.pth',
+        # url='https://huggingface.co/lllyasviel/Capsule-inpaint/resolve/main/capsule_inpaint_head.pth',  <- Alternative if repo name also changes
         model_dir=path_inpaint,
-        file_name='fooocus_inpaint_head.pth'
+        file_name='capsule_inpaint_head.pth'
     )
-    head_file = os.path.join(path_inpaint, 'fooocus_inpaint_head.pth')
-    patch_file = None
-
-    if v == 'v1':
-        load_file_from_url(
-            url='https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/inpaint.fooocus.patch',
-            model_dir=path_inpaint,
-            file_name='inpaint.fooocus.patch'
+    head_file = os.path.join(path_inpaint, 'capsule_inpaint_head.pth')
+    if not os.path.exists(head_file):
+        download_manager.append(
+            url='https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/inpaint.capsule.patch',
+            # url='https://huggingface.co/lllyasviel/Capsule-inpaint/resolve/main/inpaint.capsule.patch',
+            path=path_inpaint,
+            file_name='inpaint.capsule.patch'
         )
-        patch_file = os.path.join(path_inpaint, 'inpaint.fooocus.patch')
-
-    if v == 'v2.5':
-        load_file_from_url(
-            url='https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/inpaint_v25.fooocus.patch',
-            model_dir=path_inpaint,
-            file_name='inpaint_v25.fooocus.patch'
+        patch_file = os.path.join(path_inpaint, 'inpaint.capsule.patch')
+        download_manager.append(
+            url='https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/inpaint_v25.capsule.patch',
+            # url='https://huggingface.co/lllyasviel/Capsule-inpaint/resolve/main/inpaint_v25.capsule.patch',
+            path=path_inpaint,
+            file_name='inpaint_v25.capsule.patch'
         )
-        patch_file = os.path.join(path_inpaint, 'inpaint_v25.fooocus.patch')
-
-    if v == 'v2.6':
-        load_file_from_url(
-            url='https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/inpaint_v26.fooocus.patch',
-            model_dir=path_inpaint,
-            file_name='inpaint_v26.fooocus.patch'
+        patch_file = os.path.join(path_inpaint, 'inpaint_v25.capsule.patch')
+        download_manager.append(
+            url='https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/inpaint_v26.capsule.patch',
+            # url='https://huggingface.co/lllyasviel/Capsule-inpaint/resolve/main/inpaint_v26.capsule.patch',
+            path=path_inpaint,
+            file_name='inpaint_v26.capsule.patch'
         )
-        patch_file = os.path.join(path_inpaint, 'inpaint_v26.fooocus.patch')
+        patch_file = os.path.join(path_inpaint, 'inpaint_v26.capsule.patch')
 
     return head_file, patch_file
 
@@ -890,11 +890,11 @@ def downloading_controlnet_canny():
 
 def downloading_controlnet_cpds():
     load_file_from_url(
-        url='https://huggingface.co/lllyasviel/misc/resolve/main/fooocus_xl_cpds_128.safetensors',
+        url='https://huggingface.co/lllyasviel/misc/resolve/main/capsule_xl_cpds_128.safetensors',
         model_dir=path_controlnet,
-        file_name='fooocus_xl_cpds_128.safetensors'
+        file_name='capsule_xl_cpds_128.safetensors'
     )
-    return os.path.join(path_controlnet, 'fooocus_xl_cpds_128.safetensors')
+    return os.path.join(path_controlnet, 'capsule_xl_cpds_128.safetensors')
 
 
 def downloading_ip_adapters(v):
@@ -937,11 +937,12 @@ def downloading_ip_adapters(v):
 
 def downloading_upscale_model():
     load_file_from_url(
-        url='https://huggingface.co/lllyasviel/misc/resolve/main/fooocus_upscaler_s409985e5.bin',
-        model_dir=path_upscale_models,
-        file_name='fooocus_upscaler_s409985e5.bin'
+        url='https://huggingface.co/lllyasviel/misc/resolve/main/capsule_upscaler_s409985e5.bin',
+        # Still points to the original 'fooocus_upscaler_s409985e5.bin' file, saving it with the new name
+        path=path_upscale_models,
+        file_name='capsule_upscaler_s409985e5.bin'
     )
-    return os.path.join(path_upscale_models, 'fooocus_upscaler_s409985e5.bin')
+    return os.path.join(path_upscale_models, 'capsule_upscaler_s409985e5.bin')
 
 def downloading_safety_checker_model():
     load_file_from_url(

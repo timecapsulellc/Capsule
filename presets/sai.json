@@ -37,8 +37,8 @@
     "default_prompt": "",
     "default_prompt_negative": "",
     "default_styles": [
-        "Fooocus V2",
-        "Fooocus Cinematic"
+        "Capsule V2",
+        "Capsule Cinematic"
     ],
     "default_aspect_ratio": "1152*896",
     "default_overwrite_step": -1,

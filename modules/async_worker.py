@@ -734,7 +734,7 @@ def worker():
                 current_progress += 1
             for i, t in enumerate(tasks):
 
-                progressbar(async_task, current_progress, f'Preparing Fooocus text #{i + 1} ...')
+                progressbar(async_task, current_progress, f'Preparing Capsule text #{i + 1} ...')
                 expansion = pipeline.final_expansion(t['task_prompt'], t['task_seed'])
                 print(f'[Prompt Expansion] {expansion}')
                 t['expansion'] = expansion
@@ -1450,6 +1450,7 @@ def worker():
                     preparation_steps, switch, tiled, total_count, use_expansion, use_style, use_synthetic_refiner,
                     width, persist_image)
                 async_task.enhance_stats[index] += 1
+                
                 
                 if exception_result == 'continue':
                     continue

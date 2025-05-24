@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https:| --niji | [Multiple launchers: "run.bat", "run_anime.bat", and "run_realistic.bat".](https://github.com/lllyasviel/Capsule/discussions/679) <br> Capsule support SDXL models on Civitai <br> (You can google search "Civitai" if you do not know about it) |/github.com/lllyasviel/Capsule/assets/19834515/483fb86d-c9a2-4c20-997c-46dafc124f25">
+<img src="https:| --niji | [Multiple launchers: "run.bat", "run_anime.bat", and "run_realistic.bat".](https://github.com/timecapsulellc/Capsule/discussions/679) <br> Capsule support SDXL models on Civitai <br> (You can google search "Civitai" if you do not know about it) |/github.com/lllyasviel/Capsule/assets/19834515/483fb86d-c9a2-4c20-997c-46dafc124f25">
 </div>
 
 # Capsule
@@ -10,7 +10,7 @@ Capsule is an image generating software (based on [Gradio](https://www.gradio.ap
 
 Capsule presents a rethinking of image generator designs. The software is offline, open source, and free, while at the same time, similar to many online image generators like Midjourney, the manual tweaking is not needed, and users only need to focus on the prompts and images. Capsule has also simplified the installation: between pressing "download" and generating the first image, the number of needed mouse clicks is strictly limited to less than 3. Minimal GPU memory requirement is 4GB (Nvidia).
 
-**Recently many fake websites exist on Google when you search “fooocus”. Do not trust those – here is the only official source of Capsule.**
+**Recently many fake websites exist on Google when you search "capsule". Do not trust those – here is the only official source of Capsule.**
 
 # Project Status: Limited Long-Term Support (LTS) with Bug Fixes Only
 
@@ -20,7 +20,7 @@ The Capsule project, built entirely on the **Stable Diffusion XL** architecture,
 
 For those interested in utilizing newer models such as **Flux**, we recommend exploring alternative platforms such as [WebUI Forge](https://github.com/lllyasviel/stable-diffusion-webui-forge) (also from us), [ComfyUI/SwarmUI](https://github.com/comfyanonymous/ComfyUI). Additionally, several [excellent forks of Capsule](https://github.com/lllyasviel/Capsule?tab=readme-ov-file#forks) are available for experimentation.
 
-Again, recently many fake websites exist on Google when you search “fooocus”. Do **NOT** get Capsule from those websites – this page is the only official source of Capsule. We never have any website like such as “fooocus.com”, “fooocus.net”, “fooocus.co”, “fooocus.ai”, “fooocus.org”, “fooocus.pro”, “fooocus.one”. Those websites are ALL FAKE. **They have ABSOLUTLY no relationship to us. Capsule is a 100% non-commercial offline open-source software.**
+Again, recently many fake websites exist on Google when you search "capsule". Do **NOT** get Capsule from those websites – this page is the only official source of Capsule. We never have any website like such as "capsule.com", "capsule.net", "capsule.co", "capsule.ai", "capsule.org", "capsule.pro", "capsule.one". Those websites are ALL FAKE. **They have ABSOLUTLY no relationship to us. Capsule is a 100% non-commercial offline open-source software.**
 
 # Features
 
@@ -35,7 +35,7 @@ Below is a quick list using Midjourney's examples:
 | Image Prompt | Input Image -> Image Prompt <br> (Capsule uses its own image prompt algorithm so that result quality and prompt understanding are more satisfying than all other software that uses standard SDXL methods like standard IP-Adapters or Revisions) |
 | --style | Advanced -> Style |
 | --stylize | Advanced -> Advanced -> Guidance |
-| --niji | [Multiple launchers: "run.bat", "run_anime.bat", and "run_realistic.bat".](https://github.com/lllyasviel/Fooocus/discussions/679) <br> Capsule support SDXL models on Civitai <br> (You can google search “Civitai” if you do not know about it) |
+| --niji | [Multiple launchers: "run.bat", "run_anime.bat", and "run_realistic.bat".](https://github.com/timecapsulellc/Capsule/discussions/679) <br> Capsule support SDXL models on Civitai <br> (You can google search “Civitai” if you do not know about it) |
 | --quality | Advanced -> Quality |
 | --repeat | Advanced -> Image Number |
 | Multi Prompts (::) | Just use multiple lines of prompts |
@@ -438,7 +438,7 @@ Below are some Forks to Capsule:
 
 | Capsule's forks |
 | - |
-| [fenneishi/Capsule-Control](https://github.com/fenneishi/Fooocus-Control) </br>[runew0lf/RuinedCapsule](https://github.com/runew0lf/RuinedFooocus) </br> [MoonRide303/Capsule-MRE](https://github.com/MoonRide303/Fooocus-MRE) </br> [mashb1t/Capsule](https://github.com/mashb1t/Fooocus) </br> and so on ... |
+| [fenneishi/Capsule-Control](https://github.com/fenneishi/Capsule-Control) </br>[runew0lf/RuinedCapsule](https://github.com/runew0lf/RuinedCapsule) </br> [MoonRide303/Capsule-MRE](https://github.com/MoonRide303/Capsule-MRE) </br> [mashb1t/Capsule](https://github.com/mashb1t/Capsule) </br> and so on ... |
 
 ## Thanks
 
