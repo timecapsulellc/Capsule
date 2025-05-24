@@ -18,7 +18,7 @@ The Capsule project, built entirely on the **Stable Diffusion XL** architecture,
 
 **There are no current plans to migrate to or incorporate newer model architectures.** However, this may change during time with the development of open-source community. For example, if the community converge to one single dominant method for image generation (which may really happen in half or one years given the current status), Capsule may also migrate to that exact method.
 
-For those interested in utilizing newer models such as **Flux**, we recommend exploring alternative platforms such as [WebUI Forge](https://github.com/lllyasviel/stable-diffusion-webui-forge) (also from us), [ComfyUI/SwarmUI](https://github.com/comfyanonymous/ComfyUI). Additionally, several [excellent forks of Capsule](https://github.com/lllyasviel/Capsule?tab=readme-ov-file#forks) are available for experimentation.
+For those interested in utilizing newer models such as **Flux**, we recommend exploring alternative platforms such as [WebUI Forge](https://github.com/lllyasviel/stable-diffusion-webui-forge) (also from us), [ComfyUI/SwarmUI](https://github.com/comfyanonymous/ComfyUI). Additionally, several [excellent forks of Capsule](https://github.com/timecapsulellc/Capsule?tab=readme-ov-file#forks) are available for experimentation.
 
 Again, recently many fake websites exist on Google when you search "capsule". Do **NOT** get Capsule from those websites – this page is the only official source of Capsule. We never have any website like such as "capsule.com", "capsule.net", "capsule.co", "capsule.ai", "capsule.org", "capsule.pro", "capsule.one". Those websites are ALL FAKE. **They have ABSOLUTLY no relationship to us. Capsule is a 100% non-commercial offline open-source software.**
 
