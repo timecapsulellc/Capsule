@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https:| --niji | [Multiple launchers: "run.bat", "run_anime.bat", and "run_realistic.bat".](https://github.com/timecapsulellc/Capsule/discussions/679) <br> Capsule support SDXL models on Civitai <br> (You can google search "Civitai" if you do not know about it) |/github.com/lllyasviel/Capsule/assets/19834515/483fb86d-c9a2-4c20-997c-46dafc124f25">
+<img src="https://github.com/timecapsulellc/Capsule/assets/19834515/483fb86d-c9a2-4c20-997c-46dafc124f25">
 </div>
 
 # Capsule
