@@ -375,13 +375,7 @@ default_vae = get_config_item_or_set_default(
 )
 default_styles = get_config_item_or_set_default(
     key='default_styles',
-    default_value=[
-        "Capsule V2",
-        "Capsule Enhance",
-        "Capsule Sharp"
-    ],
-    validator=lambda x: isinstance(x, list) and all(y in modules.sdxl_styles.legal_style_names for y in x),
-    expected_type=list
+    default=["Capsule V2", "Capsule Enhance", "Capsule Sharp"]
 )
 default_prompt_negative = get_config_item_or_set_default(
     key='default_prompt_negative',
